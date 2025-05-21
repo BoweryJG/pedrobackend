@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "supabase start",
-    "build": "npx supabase login --token ${SUPABASE_ACCESS_TOKEN} && npx supabase init --force",
+    "build": "npx supabase init --force",
+    "postbuild": "supabase db push",
     "db:push": "supabase db push",
-    "db:seed": "supabase db exec -f supabase/seed/seed_data.sql",
+    "db:seed": "supabase db execute --file supabase/seed/seed_data.sql",
     "functions:serve": "supabase functions serve"
   },
   "engines": {
