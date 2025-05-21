@@ -6,6 +6,8 @@
   "scripts": {
     "start": "supabase start",
     "dev": "supabase start",
+    "build": "npm install -g supabase && supabase init --force",
+    "postbuild": "supabase db push && supabase db exec -f supabase/seed/seed_data.sql",
     "db:push": "supabase db push",
     "db:seed": "supabase db exec -f supabase/seed/seed_data.sql",
     "functions:serve": "supabase functions serve"

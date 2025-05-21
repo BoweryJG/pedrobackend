@@ -1,1 +1,1 @@
-web: supabase start
+web: npm start
