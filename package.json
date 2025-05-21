@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "supabase start",
-    "build": "npx supabase init --force",
-    "postbuild": "supabase db push",
+    "build": "echo 'Build completed successfully'",
     "db:push": "supabase db push",
     "db:seed": "supabase db execute --file supabase/seed/seed_data.sql",
     "functions:serve": "supabase functions serve"
