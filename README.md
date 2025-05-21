@@ -95,6 +95,8 @@ The database includes tables for:
 This backend is deployed on Render at:
 - https://pedrobackend.onrender.com
 
+Current deployment status: Rebuilding (May 21, 2025)
+
 To deploy changes:
 1. Push to the main branch of this repository
 2. Render will automatically deploy the changes
