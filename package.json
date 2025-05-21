@@ -4,10 +4,9 @@
   "description": "Backend for Dr. Greg Pedro's dental practice website",
   "main": "index.js",
   "scripts": {
-    "start": "supabase start",
+    "start": "node index.js",
     "dev": "supabase start",
-    "build": "npm install -g supabase && supabase init --force",
-    "postbuild": "supabase db push && supabase db exec -f supabase/seed/seed_data.sql",
+    "build": "npx supabase login --token ${SUPABASE_ACCESS_TOKEN} && npx supabase init --force",
     "db:push": "supabase db push",
     "db:seed": "supabase db exec -f supabase/seed/seed_data.sql",
     "functions:serve": "supabase functions serve"

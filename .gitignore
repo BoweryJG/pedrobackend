@@ -33,6 +33,9 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
+# Deployment configuration with sensitive data
+render.yaml
+
 # Build artifacts
 dist/
 build/
