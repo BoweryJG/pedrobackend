@@ -99,6 +99,21 @@ To deploy changes:
 1. Push to the main branch of this repository
 2. Render will automatically deploy the changes
 
+### Render Build and Start Commands
+
+When creating the service on Render, make sure the **Build Command** installs
+dependencies and then exits. Using `npm start` as the build command will start
+the server and keep the build step running indefinitely. Instead, set the
+commands as follows:
+
+```
+Build Command: npm install
+Start Command: node index.js
+```
+
+This mirrors the `render.yaml` configuration and ensures the build completes
+properly before the service begins running.
+
 ## Environment Variables
 
 - `SUPABASE_URL`: URL of the Supabase project
