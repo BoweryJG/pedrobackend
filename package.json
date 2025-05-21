@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend for Dr. Greg Pedro's dental practice website",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "dev": "supabase start",

@@ -2,7 +2,7 @@
 // The actual functionality is handled by Supabase Edge Functions
 const http = require('http');
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   console.log(`[${new Date().toISOString()}] Received request for ${req.url}`);
