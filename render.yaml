@@ -3,6 +3,7 @@ services:
     name: gregpedro-backend
     env: node
     runtime: node
+    rootDir: .
     plan: free
     buildCommand: npm install
     startCommand: node index.js
