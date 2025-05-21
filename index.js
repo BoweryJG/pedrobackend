@@ -2,7 +2,10 @@
 // The actual functionality is handled by Supabase Edge Functions
 const http = require('http');
 
-const PORT = process.env.PORT || 3000;
+// CRITICAL: Use PORT from environment or default to 10000
+const PORT = process.env.PORT || 10000;
+
+console.log(`Starting server with PORT=${PORT}`);
 
 const server = http.createServer((req, res) => {
   console.log(`[${new Date().toISOString()}] Received request for ${req.url}`);
@@ -11,13 +14,15 @@ const server = http.createServer((req, res) => {
   res.end(JSON.stringify({
     status: 'ok',
     message: 'Dr. Greg Pedro Dental Backend - Powered by Supabase',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    port: PORT
   }));
 });
 
-server.listen(PORT, () => {
+// Explicit host binding to ensure Render can access it
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Dr. Greg Pedro Dental Backend - Powered by Supabase`);
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} and bound to 0.0.0.0`);
   console.log(`Deployed on Render: https://pedrobackend.onrender.com`);
 });
 
