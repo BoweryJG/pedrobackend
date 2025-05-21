@@ -64,30 +64,32 @@ The database includes tables for:
 
 ## Local Development Setup
 
-1. **Install dependencies**
+1. **Install dependencies and Supabase CLI**
    ```bash
-   # Install Supabase CLI
-   npm install -g supabase
+   npm install
    ```
+
+   The Supabase CLI is included as a development dependency and can be run
+   with `npx supabase`.
 
 2. **Start local Supabase instance**
    ```bash
-   supabase start
+   npx supabase start
    ```
 
 3. **Apply migrations**
    ```bash
-   supabase db push
+   npx supabase db push
    ```
 
 4. **Seed database with initial data**
    ```bash
-   supabase db exec -f supabase/seed/seed_data.sql
+   npx supabase db exec -f supabase/seed/seed_data.sql
    ```
 
 5. **Serve functions locally**
    ```bash
-   supabase functions serve
+   npx supabase functions serve
    ```
 
 ## Deployment
