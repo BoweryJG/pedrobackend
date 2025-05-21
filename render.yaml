@@ -5,8 +5,8 @@ services:
     runtime: node
     rootDir: .
     plan: free
-    buildCommand: npm install
-    startCommand: node index.js
+    buildCommand: npm install && npm run build
+    startCommand: PORT=10000 node index.js
     envVars:
       - key: SUPABASE_URL
         value: https://pedrobackend.onrender.com
