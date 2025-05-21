@@ -1,10 +1,11 @@
 // supabase/functions/appointments/index.ts
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7'
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://deno.land/x/supabase/mod.ts";
 import { corsHeaders } from '../_shared/cors.ts'
 
-const supabaseUrl = Deno.env.get('SUPABASE_URL') || ''
-const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') || ''
+const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || "";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 serve(async (req) => {
   // Handle CORS preflight request
@@ -20,14 +21,10 @@ serve(async (req) => {
     }
 
     // Create a Supabase client with the user's token
-    const supabase = createClient(
-      supabaseUrl,
-      supabaseAnonKey,
-      { global: { headers: { Authorization: authHeader } } }
-    )
+    const userSupabase = supabase.auth.api.setAuthHeader(authHeader)
 
     // Get the current user
-    const { data: { user }, error: userError } = await supabase.auth.getUser()
+    const { data: { user }, error: userError } = await userSupabase.auth.getUser()
 
     if (userError || !user) {
       throw new Error('Unauthorized')

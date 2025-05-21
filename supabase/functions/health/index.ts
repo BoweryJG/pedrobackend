@@ -1,11 +1,10 @@
 // supabase/functions/health/index.ts
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { corsHeaders } from '../_shared/cors.ts'
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 serve(async (req) => {
   // Handle CORS preflight request
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+    return new Response('ok', { status: 200 })
   }
 
   try {
@@ -20,11 +19,10 @@ serve(async (req) => {
     return new Response(
       JSON.stringify(healthStatus),
       {
+        status: 200,
         headers: {
-          ...corsHeaders,
           'Content-Type': 'application/json',
         },
-        status: 200,
       },
     )
   } catch (err) {
@@ -33,11 +31,10 @@ serve(async (req) => {
         error: err.message,
       }),
       {
+        status: 500,
         headers: {
-          ...corsHeaders,
           'Content-Type': 'application/json',
         },
-        status: 500,
       },
     )
   }

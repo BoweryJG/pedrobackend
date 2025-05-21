@@ -1,10 +1,11 @@
 // supabase/functions/auth/index.ts
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7'
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://deno.land/x/supabase/mod.ts";
 import { corsHeaders } from '../_shared/cors.ts'
 
-const supabaseUrl = Deno.env.get('SUPABASE_URL') || ''
-const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') || ''
+const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || "";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 serve(async (req) => {
   // Handle CORS preflight request
@@ -13,11 +14,7 @@ serve(async (req) => {
   }
 
   try {
-    // Create a Supabase client
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
-    const url = new URL(req.url)
-    const action = url.pathname.split('/').pop()
-    const body = await req.json()
+    const { action, ...body } = await req.json();
 
     // Create response object
     let data

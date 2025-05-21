@@ -3,7 +3,7 @@ services:
     name: gregpedro-backend
     env: node
     plan: free
-    buildCommand: npm install && npm install -g supabase && supabase init --force
+    buildCommand: npm install && npm install -g supabase@latest && supabase init --force
     startCommand: supabase start
     envVars:
       - key: SUPABASE_URL
