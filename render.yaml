@@ -3,13 +3,27 @@ services:
     name: gregpedro-backend
     env: node
     plan: free
-    buildCommand: npm install && npm install -g supabase@latest && supabase init --force
-    startCommand: supabase start
+    buildCommand: npm install && npx supabase login --token ${SUPABASE_ACCESS_TOKEN} && npx supabase init --force
+    startCommand: node index.js
     envVars:
       - key: SUPABASE_URL
         value: https://pedrobackend.onrender.com
       - key: SUPABASE_ANON_KEY
-        generateValue: true
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzbXRhYXJ3Z29ka2xhZnFsYmhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4NTM2MjAsImV4cCI6MjA2MzQyOTYyMH0.AT_9RXVrI82-oSbvUACmtRgFCm2k-rx4hEozKqMa1Ds
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzbXRhYXJ3Z29ka2xhZnFsYmhtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0Nzg1MzYyMCwiZXhwIjoyMDYzNDI5NjIwfQ.fcnxyDvM1qvWxZNPZjEHJmgCrVX-7hZHXH3vXA-oNx8
+      - key: SUPABASE_JWT_SECRET
+        value: 6F1eFzz4oEUJcnTDvj+tT2O+XavL9i5Kyt8ElBCEzSg
+      - key: SUPABASE_ACCESS_TOKEN
+        value: sbp_e2f82cc18ba03f59b493c52c2baaa7fb01dc4359
+      - key: SUPABASE_PROJECT_REF
+        value: tsmtaarwgodklafqlbhm
+      - key: SUPABASE_DB_PASSWORD
+        value: PedroGold2025
+      - key: PORT
+        value: 10000
+      - key: ENVIRONMENT
+        value: production
     autoDeploy: true
     
   - type: pserv
